@@ -58,6 +58,7 @@ html {
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
 }
 
 body {
@@ -65,7 +66,8 @@ body {
     background: var(--bg-primary);
     color: var(--text-primary);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: clip;
+    max-width: 100vw;
 }
 
 ::selection {
@@ -148,6 +150,8 @@ img {
     z-index: 1000;
     padding: 20px 0;
     transition: all var(--transition-smooth);
+    max-width: 100vw;
+    overflow: hidden;
 }
 
 #navbar.scrolled {
@@ -614,6 +618,7 @@ img {
 .about {
     padding: 120px 0;
     position: relative;
+    overflow: clip;
 }
 
 .about-grid {
@@ -744,6 +749,7 @@ img {
     padding: 120px 0;
     background: var(--bg-secondary);
     position: relative;
+    overflow: clip;
 }
 
 .products::before {
@@ -960,7 +966,7 @@ img {
 .projects {
     padding: 120px 0;
     background: var(--bg-secondary);
-    overflow: hidden;
+    overflow: clip;
 }
 
 /* Marquee */
