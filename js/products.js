@@ -7,25 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---- Register GSAP ScrollTrigger ----
     gsap.registerPlugin(ScrollTrigger);
 
-    // ---- Mobile Navigation ----
-    const navToggle = document.getElementById('navToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-cta');
-
-    navToggle.addEventListener('click', () => {
-        navToggle.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-    });
-
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navToggle.classList.remove('active');
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-    });
-
     // ---- Smooth Scroll for Anchor Links ----
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {

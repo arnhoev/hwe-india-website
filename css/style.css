@@ -1368,15 +1368,143 @@ img {
     transform: translateY(0);
 }
 
-/* ---- Mobile Touch & iOS Fixes ---- */
+/* ---- Fluid Responsive Design ---- */
+/* Nav always visible — horizontal scroll on narrow screens */
+.nav-links {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    flex-shrink: 1;
+    min-width: 0;
+    gap: clamp(12px, 2vw, 32px);
+}
+
+.nav-links::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-link {
+    font-size: clamp(0.7rem, 1.2vw, 0.875rem);
+    white-space: nowrap;
+}
+
+.nav-cta {
+    font-size: clamp(0.7rem, 1.2vw, 0.875rem);
+    padding: clamp(6px, 1vw, 10px) clamp(12px, 2vw, 24px);
+    flex-shrink: 0;
+}
+
+.nav-container {
+    padding: 0 clamp(12px, 3vw, 32px);
+}
+
+.nav-toggle {
+    display: none !important;
+}
+
+.mobile-menu {
+    display: none !important;
+}
+
+/* Fluid grids using auto-fit */
+.products-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+}
+
+.about-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+}
+
+.project-highlights {
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+}
+
+.contact-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+}
+
+.footer-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+}
+
+.form-row {
+    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+}
+
+.stats-grid {
+    gap: clamp(16px, 3vw, 40px);
+}
+
+.stat-item {
+    min-width: clamp(80px, 15vw, 150px);
+}
+
+/* Capability rows wrap naturally */
+.capability-row {
+    flex-wrap: wrap;
+}
+
+.capability-card {
+    min-width: min(280px, 100%);
+}
+
+.capability-card.large {
+    min-width: min(380px, 100%);
+}
+
+/* Fluid section padding */
+.about,
+.products,
+.capabilities,
+.projects,
+.contact {
+    padding: clamp(48px, 8vw, 120px) 0;
+}
+
+.cta-section {
+    padding: clamp(36px, 6vw, 80px) 0;
+}
+
+.footer {
+    padding: clamp(40px, 6vw, 80px) 0 clamp(24px, 3vw, 40px);
+}
+
+/* Fluid container padding */
+.container {
+    padding: 0 clamp(16px, 4vw, 24px);
+}
+
+/* Fluid CTA box */
+.cta-box {
+    padding: clamp(24px, 5vw, 64px);
+}
+
+.contact-form-wrapper {
+    padding: clamp(20px, 4vw, 40px);
+}
+
+/* Fluid typography that already uses clamp stays; override fixed sizes */
+.hero-actions {
+    flex-wrap: wrap;
+}
+
+.cta-actions {
+    flex-wrap: wrap;
+}
+
+.footer-bottom {
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* iOS smooth scroll */
 @supports (-webkit-touch-callout: none) {
-    /* iOS-specific smooth scroll fix */
     html {
         -webkit-overflow-scrolling: touch;
     }
 }
 
-/* Ensure tap targets are at least 44px on touch devices */
+/* Touch-friendly tap targets */
 @media (pointer: coarse) {
     .nav-link,
     .product-link,
@@ -1391,454 +1519,32 @@ img {
         display: inline-flex;
         align-items: center;
     }
-}
 
-/* ---- Responsive Design ---- */
-@media (max-width: 1024px) {
-    .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .capability-row {
-        flex-direction: column;
-    }
-
-    .capability-card.large {
-        flex: 1;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-    }
-
-    .about {
-        padding: 80px 0;
-    }
-
-    .products {
-        padding: 80px 0;
-    }
-
-    .capabilities {
-        padding: 80px 0;
-    }
-
-    .projects {
-        padding: 80px 0;
-    }
-
-    .contact {
-        padding: 80px 0;
+    /* Prevent iOS zoom on input focus */
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: 16px;
     }
 }
 
-@media (max-width: 768px) {
-    .nav-links,
-    .nav-cta {
+/* Hide decorative elements on very narrow screens to save space */
+@media (max-width: 500px) {
+    .stat-divider {
         display: none;
     }
 
-    .nav-toggle {
-        display: flex;
-    }
-
-    #navbar {
-        padding: 14px 0;
-    }
-
-    #navbar.scrolled {
-        padding: 10px 0;
-    }
-
-    .nav-container {
-        padding: 0 20px;
-    }
-
-    .logo-sub {
-        display: none;
-    }
-
+    .logo-sub,
     .logo-divider {
         display: none;
-    }
-
-    .hero {
-        padding: 100px 20px 60px;
-        min-height: 100svh;
-    }
-
-    .hero-title {
-        font-size: clamp(2.5rem, 10vw, 3.5rem);
-    }
-
-    .hero-subtitle {
-        font-size: 1rem;
     }
 
     .hero-scroll-indicator {
         display: none;
     }
 
-    .stats-band {
-        padding: 48px 0;
-    }
-
-    .stats-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 32px 16px;
-    }
-
-    .stat-divider {
-        display: none;
-    }
-
-    .stat-item {
-        min-width: unset;
-    }
-
-    .stat-number {
-        font-size: 2.2rem;
-    }
-
-    .stat-suffix {
-        font-size: 1.3rem;
-    }
-
-    .stat-label {
-        font-size: 0.8rem;
-    }
-
-    .about {
-        padding: 64px 0;
-    }
-
-    .about-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-
-    .about-visual {
-        height: auto;
-    }
-
-    .card-1,
-    .card-2,
-    .card-3 {
-        margin-left: 0;
-    }
-
-    .visual-card {
-        padding: 20px 24px;
-    }
-
-    .card-year {
-        font-size: 1.6rem;
-    }
-
-    .section-header.center {
-        margin-bottom: 40px;
-    }
-
-    .products {
-        padding: 64px 0;
-    }
-
-    .products-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-
-    .product-card {
-        padding: 24px 20px;
-    }
-
-    .products-cta {
-        margin-top: 36px;
-    }
-
-    .capabilities {
-        padding: 64px 0;
-    }
-
-    .capability-card {
-        padding: 28px;
-    }
-
-    .capability-number {
-        font-size: 2.5rem;
-    }
-
-    .projects {
-        padding: 64px 0;
-    }
-
-    .project-highlights {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-
-    .highlight-card {
-        padding: 24px;
-    }
-
-    .contact {
-        padding: 64px 0;
-    }
-
-    .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-
-    .form-row {
-        grid-template-columns: 1fr;
-    }
-
-    .cta-section {
-        padding: 48px 0;
-    }
-
-    .cta-box {
-        padding: 36px 24px;
-    }
-
-    .cta-content h2 {
-        font-size: 1.5rem;
-    }
-
-    .cta-content p {
-        font-size: 0.95rem;
-    }
-
     .cta-visual {
         display: none;
-    }
-
-    .footer {
-        padding: 48px 0 32px;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-        gap: 8px;
-        text-align: center;
-    }
-
-    .marquee-item {
-        font-size: 1.2rem;
-    }
-
-    .marquee-wrapper {
-        margin: 36px 0;
-    }
-
-    .section-desc {
-        font-size: 1rem;
-    }
-
-    .btn {
-        padding: 12px 28px;
-        font-size: 0.9rem;
-    }
-
-    .btn-lg {
-        padding: 14px 32px;
-        font-size: 0.95rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        padding: 0 16px;
-    }
-
-    .hero-title {
-        font-size: clamp(2rem, 9vw, 2.8rem);
-    }
-
-    .hero-badge {
-        font-size: 0.75rem;
-        padding: 6px 14px;
-        margin-bottom: 20px;
-    }
-
-    .hero-actions {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .hero-actions .btn {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .stats-grid {
-        gap: 24px 12px;
-    }
-
-    .stat-number {
-        font-size: 1.8rem;
-    }
-
-    .about-text p {
-        font-size: 0.9rem;
-    }
-
-    .feature-item {
-        padding: 12px;
-    }
-
-    .contact-form-wrapper {
-        padding: 20px 16px;
-    }
-
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-        padding: 14px 16px;
-        font-size: 16px; /* Prevents iOS zoom on focus */
-    }
-
-    .form-group label {
-        left: 16px;
-        top: 14px;
-    }
-
-    .section-title {
-        font-size: clamp(1.6rem, 6vw, 2rem);
-    }
-
-    .cta-box {
-        padding: 28px 16px;
-    }
-
-    .cta-actions {
-        flex-direction: column;
-    }
-
-    .cta-actions .btn {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .mobile-link {
-        font-size: 1.5rem;
-    }
-
-    .footer-brand p {
-        font-size: 0.8rem;
-    }
-
-    .highlight-card {
-        padding: 20px 16px;
-    }
-}
-
-/* Landscape phones */
-@media (max-height: 500px) and (orientation: landscape) {
-    .hero {
-        min-height: auto;
-        padding: 80px 20px 40px;
-    }
-
-    .hero-title {
-        font-size: 2rem;
-    }
-
-    .hero-subtitle {
-        font-size: 0.9rem;
-        margin-bottom: 20px;
-    }
-
-    .mobile-menu-content {
-        gap: 12px;
-    }
-
-    .mobile-link {
-        font-size: 1.2rem;
-    }
-}
-
-/* ---- Mobile Bottom Navigation Bar ---- */
-.mobile-bottom-nav {
-    display: none; /* hidden on desktop */
-}
-
-@media (max-width: 768px) {
-    .mobile-bottom-nav {
-        display: flex;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 1000;
-        background: rgba(5, 10, 21, 0.92);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-top: 1px solid var(--border-color);
-        padding: 6px 0 env(safe-area-inset-bottom, 6px);
-        justify-content: space-around;
-        align-items: center;
-    }
-
-    .bottom-nav-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 3px;
-        padding: 6px 8px;
-        border-radius: 8px;
-        color: var(--text-muted);
-        text-decoration: none;
-        transition: color var(--transition-fast);
-        flex: 1;
-        min-width: 0;
-    }
-
-    .bottom-nav-item svg {
-        width: 22px;
-        height: 22px;
-        flex-shrink: 0;
-    }
-
-    .bottom-nav-item span {
-        font-size: 0.6rem;
-        font-weight: 600;
-        letter-spacing: 0.02em;
-        white-space: nowrap;
-    }
-
-    .bottom-nav-item.active {
-        color: var(--accent-cyan);
-    }
-
-    .bottom-nav-item:active {
-        color: var(--accent-cyan);
-        background: rgba(0, 212, 255, 0.06);
-    }
-
-    /* Add bottom padding to body so footer isn't hidden behind bottom nav */
-    body {
-        padding-bottom: 70px;
-    }
-
-    /* Also hide the hamburger toggle since bottom nav replaces it */
-    .nav-toggle {
-        display: none;
-    }
-
-    /* Keep the top navbar simpler — just logo and CTA */
-    .nav-cta {
-        display: inline-flex;
-        font-size: 0.75rem;
-        padding: 8px 16px;
     }
 }
 
