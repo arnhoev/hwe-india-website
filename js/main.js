@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---- Active Nav Link on Scroll ----
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
+    const bottomNavItems = document.querySelectorAll('.bottom-nav-item[data-section]');
 
     function updateActiveLink() {
         const scrollPos = window.pageYOffset + 200;
@@ -65,10 +66,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const height = section.offsetHeight;
             const id = section.getAttribute('id');
             if (scrollPos >= top && scrollPos < top + height) {
+                // Update top nav
                 navLinks.forEach(link => {
                     link.classList.remove('active');
                     if (link.getAttribute('href') === '#' + id) {
                         link.classList.add('active');
+                    }
+                });
+                // Update bottom mobile nav
+                bottomNavItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('data-section') === id) {
+                        item.classList.add('active');
                     }
                 });
             }
